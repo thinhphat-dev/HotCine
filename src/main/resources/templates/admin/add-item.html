@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+	<link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="/css/select2.min.css">
+	<link rel="stylesheet" href="/css/ionicons.min.css">
+	<link rel="stylesheet" href="/css/admin.css">
+
+	<!-- Favicons -->
+	<link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/icon/favicon-32x32.png">
+
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Dmitry Volkov">
+	<title>HotFlix – Online Movies, TV Shows & Cinema HTML Template</title>
+</head>
+<body>
+<!-- header -->
+<header class="header">
+	<div class="header__content">
+		<!-- header logo -->
+		<a href="/home/index" class="header__logo">
+			<img src="/img/logo.svg" alt="">
+		</a>
+		<!-- end header logo -->
+
+		<!-- header menu btn -->
+		<button class="header__btn" type="button">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<!-- end header menu btn -->
+	</div>
+</header>
+<!-- end header -->
+
+<!-- sidebar -->
+<div class="sidebar">
+	<!-- sidebar logo -->
+	<a href="/home/index" class="sidebar__logo">
+		<img src="/img/logo.svg" alt="">
+	</a>
+	<!-- end sidebar logo -->
+
+	<!-- sidebar user -->
+	<div class="sidebar__user">
+		<div class="sidebar__user-img">
+			<img src="/img/user.svg" alt="">
+		</div>
+
+		<div class="sidebar__user-title">
+			<span>Admin</span>
+			<p>John Doe</p>
+		</div>
+
+		<button class="sidebar__user-btn" type="button">
+			<i class="icon ion-ios-log-out"></i>
+		</button>
+	</div>
+	<!-- end sidebar user -->
+
+	<!-- sidebar nav -->
+	<div class="sidebar__nav-wrap">
+		<ul class="sidebar__nav">
+			<li class="sidebar__nav-item">
+				<a href="index.html" class="sidebar__nav-link"><i class="icon ion-ios-keypad"></i>
+					<span>Dashboard</span></a>
+			</li>
+
+			<li class="sidebar__nav-item">
+				<a href="catalog.html" class="sidebar__nav-link"><i class="icon ion-ios-film"></i> <span>Catalog</span></a>
+			</li>
+
+			<!-- collapse -->
+			<li class="sidebar__nav-item">
+				<a class="sidebar__nav-link" data-toggle="collapse" href="#collapseMenu" role="button"
+				   aria-expanded="true" aria-controls="collapseMenu"><i class="icon ion-ios-copy"></i>
+					<span>Pages</span> <i class="icon ion-md-arrow-dropdown"></i></a>
+
+				<ul class="collapse show sidebar__menu" id="collapseMenu">
+					<li><a class="active" href="add-item.html">Add item</a></li>
+					<li><a href="edit-user.html">Edit user</a></li>
+					<li><a href="signin.html">Sign in</a></li>
+					<li><a href="signup.html">Sign up</a></li>
+					<li><a href="forgot.html">Forgot password</a></li>
+					<li><a href="404.html">404 page</a></li>
+				</ul>
+			</li>
+			<!-- end collapse -->
+
+			<li class="sidebar__nav-item">
+				<a href="users.html" class="sidebar__nav-link"><i class="icon ion-ios-contacts"></i> <span>Users</span></a>
+			</li>
+
+			<li class="sidebar__nav-item">
+				<a href="comments.html" class="sidebar__nav-link"><i class="icon ion-ios-chatbubbles"></i> <span>Comments</span></a>
+			</li>
+
+			<li class="sidebar__nav-item">
+				<a href="reviews.html" class="sidebar__nav-link"><i class="icon ion-ios-star-half"></i>
+					<span>Reviews</span></a>
+			</li>
+
+			<li class="sidebar__nav-item">
+				<a href="https://hotflix.volkovdesign.com/main/index.html" class="sidebar__nav-link"><i
+						class="icon ion-ios-arrow-round-back"></i> <span>Back to HotFlix</span></a>
+			</li>
+		</ul>
+	</div>
+	<!-- end sidebar nav -->
+
+	<!-- sidebar copyright -->
+	<div class="sidebar__copyright">© HOTFLIX, 2019—2021. <br>Create by <a
+			href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">Dmitry Volkov</a></div>
+	<!-- end sidebar copyright -->
+</div>
+<!-- end sidebar -->
+
+<!-- main content -->
+<main class="main">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- main title -->
+			<div class="col-12">
+				<div class="main__title">
+					<h2>Quản lý Phim</h2>
+				</div>
+			</div>
+			<!-- end main title -->
+
+			<!-- form -->
+			<div class="col-12">
+				<div class="col-12 mt-3 ">
+					<h2 th:class="'main__table-text--' + ${color}" th:text="${message}"></h2>
+				</div>
+				<form class="form" action="#" th:object="${phimDTO}"
+					  enctype="multipart/form-data">
+					<div class="row row--form">
+						<div class="col-12 col-md-5 form__cover">
+							<div class="row row--form">
+								<div class="col-12 col-sm-6 col-md-12">
+									<div class="form__img">
+										<label for="form__img-upload">Ảnh bìa (270 x 400)</label>
+										<input id="form__img-upload" name="poster" type="file"
+											   accept="image/*" th:value="*{poster}" th:field="*{poster}">
+
+										<img id="form__img" th:src="'/img/covers/'+ *{poster}"/>
+
+									</div>
+									<span th:text="${posterMessage}" class="main__table-text--red"></span>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-7 form__content">
+							<div class="row row--form">
+								<div class="col-12">
+									<span th:if="${#fields.hasErrors('tenPhim')}" th:errors="*{tenPhim}" class="main__table-text--red" ></span>
+
+									<input type="text" class="form__input" placeholder="Tên phim" th:field="*{tenPhim}">
+								</div>
+								<div class="col-12">
+									<span th:if="${#fields.hasErrors('daoDien')}" th:errors="*{daoDien}" class="main__table-text--red"></span>
+
+									<input type="text" class="form__input" placeholder="Đạo diễn" th:field="*{daoDien}">
+								</div>
+								<div class="col-12">
+									<span th:if="${#fields.hasErrors('dienVien')}" th:errors="*{dienVien}" class="main__table-text--red"></span>
+
+									<input type="text" class="form__input" placeholder="Diễn viên"
+										   th:field="*{dienVien}">
+
+								</div>
+
+								<div class="col-12">
+									<span th:if="${#fields.hasErrors('gioiThieu')}" th:errors="*{gioiThieu}" class="main__table-text--red"></span>
+
+									<textarea id="text" name="text" class="form__textarea" placeholder="Giới thiệu phim"
+											  th:field="*{gioiThieu}"></textarea>
+
+								</div>
+
+								<div class="col-12 col-sm-6 col-lg-3">
+									<span th:text="${dateMessage}" class="main__table-text--red"></span>
+
+									<input type="date"  class="form__input" name="ngayRaMat"
+										   th:field="*{ngayRaMat}">
+
+								</div>
+
+								<div class="col-12 col-sm-6 col-lg-3">
+									<span th:if="${#fields.hasErrors('thoiLuong')}" th:errors="*{thoiLuong}" class="main__table-text--red"></span>
+
+									<input type="text" class="form__input" name="thoiLuong"
+										   placeholder="Thời lượng (phút)"
+										   th:field="*{thoiLuong}">
+
+								</div>
+
+								<div class="col-12 col-sm-6 col-lg-4 mt-2">
+									<ul class="form__radio">
+										<li>
+											<span>Chất lượng:</span>
+										</li>
+										<li>
+											<input id="fullhd" type="radio" name="quality" value="2D" checked>
+											<label for="fullhd">2D</label>
+										</li>
+										<li>
+											<input id="hd" type="radio" name="quality" value="3D">
+											<label for="hd">3D</label>
+										</li>
+									</ul>
+								</div>
+
+								<!--                               -->
+								<div class="col-12 col-lg-12">
+									<span class="main__table-text--red" th:if="${#fields.hasErrors('maTheLoai')}" th:errors="*{maTheLoai}"></span>
+
+									<div class="form__radio">
+										<span class="col-lg-2">Thể loại chính (Chọn 1):</span>
+
+										<div class="form-check form-check-inline col-lg-2">
+											<input class="form-check-input" type="radio" name="theLoai" id="genre1"
+												   value="1" th:field="*{maTheLoai}">
+											<label class="form-check-label" for="genre1">Hành động</label>
+										</div>
+										<div class="form-check form-check-inline col-lg-2">
+											<input class="form-check-input" type="radio" name="theLoai" id="genre3"
+												   value="3" th:field="*{maTheLoai}">
+											<label class="form-check-label" for="genre3">Kinh dị</label>
+										</div>
+										<div class="form-check form-check-inline col-lg-2">
+											<input class="form-check-input" type="radio" name="theLoai" id="genre4"
+												   value="4" th:field="*{maTheLoai}">
+											<label class="form-check-label" for="genre4">Tình cảm</label>
+										</div>
+										<div class="form-check form-check-inline col-lg-2">
+											<input class="form-check-input" type="radio" name="theLoai" id="genre5"
+												   value="5" th:field="*{maTheLoai}">
+											<label class="form-check-label" for="genre5">Hài hước</label>
+										</div>
+										<div class="form-check form-check-inline col-lg-2">
+											<input class="form-check-input" type="radio" name="theLoai" id="genre6"
+												   value="6" th:field="*{maTheLoai}">
+											<label class="form-check-label" for="genre6">Hoạt hình</label>
+										</div>
+										<!-- Add other radio buttons for genres here -->
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="col-12">
+							<span class="main__table-text--red" th:if="${#fields.hasErrors('quocGia')}" th:errors="*{quocGia}"></span>
+
+							<ul class="form__radio">
+								<li>
+									<span>Quốc gia:</span>
+								</li>
+								<li>
+									<input id="vietnam" type="radio" name="quocGia" value="Việt Nam"
+										   th:field="*{quocGia}" checked>
+									<label for="vietnam">Việt Nam</label>
+								</li>
+								<li>
+									<input id="foreign" type="radio" name="quocGia" value="Nước ngoài"
+										   th:field="*{quocGia}">
+									<label for="foreign">Nước ngoài</label>
+								</li>
+							</ul>
+
+						</div>
+
+
+						<div class="col-12">
+							<div class="row row--form">
+								<div class="col-12">
+									<span th:if="${#fields.hasErrors('trailer')}" th:errors="*{trailer}" class="main__table-text--red"></span>
+
+									<input class="form__input" name="trailer" placeholder="Trailer (link)" type="text"
+										   th:field="*{trailer}">
+								</div>
+
+
+								<div class="col-2 ">
+									<button th:formaction="@{/admin/add}" formmethod="post" type="submit"
+											class="form__btn ">Thêm
+									</button>
+								</div>
+								<div class="col-2 ">
+									<button th:formaction="@{/admin/update-info/{id}(id=${phimDTO.maPhim})}" formmethod="post" type="submit"
+											class="form__btn ">Cập nhật
+									</button>
+								</div>
+								<div class="col-2 ">
+
+									<button th:formaction="@{/admin/remove-info/{id}(id=${phimDTO.maPhim})}" formmethod="post" type="submit"
+											class="form__btn ">Xóa
+									</button>
+								</div>
+								<div class="col-2 ">
+									<button th:formaction="@{/admin/reset}" formmethod="post" type="submit"
+											class="form__btn">Tạo mới
+									</button>
+								</div>
+
+								<!--                                <div class="col-2 ">-->
+								<!--                                    <button disabled th:if="${disabled == 'disabled'}"-->
+								<!--                                            th:disabled="${disabled == 'disabled'}" th:formaction="@{/admin/add}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn ">Thêm-->
+								<!--                                    </button>-->
+								<!--                                    <button th:unless="${disabled == 'disabled'}" th:formaction="@{/admin/add}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn ">Thêm-->
+								<!--                                    </button>-->
+
+
+								<!--                                </div>-->
+								<!--                                <div class="col-2 ">-->
+								<!--                                    <button th:if="${disabled != 'disabled'}"-->
+								<!--                                            th:disabled="${disabled != 'disabled'}" disabled th:formaction="@{/admin/update-info/{id}(id=${phimDTO.maPhim})}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn ">Cập nhật-->
+								<!--                                    </button>-->
+								<!--                                    <button th:unless="${disabled != 'disabled'}" th:formaction="@{/admin/update-info/{id}(id=${phimDTO.maPhim})}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn ">Cập nhật-->
+								<!--                                    </button>-->
+
+								<!--                                </div>-->
+								<!--                                <div class="col-2 ">-->
+
+								<!--                                    <button th:if="${disabled != 'disabled'}"-->
+								<!--                                            th:disabled="${disabled != 'disabled'}" disabled th:formaction="@{/admin/remove-info/{id}(id=${phimDTO.maPhim})}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn ">Xóa-->
+								<!--                                    </button>-->
+								<!--                                    <button th:unless="${disabled != 'disabled'}" th:formaction="@{/admin/remove-info/{id}(id=${phimDTO.maPhim})}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn ">Xóa-->
+								<!--                                    </button>-->
+
+								<!--                                </div>-->
+								<!--                                <div class="col-2 ">-->
+								<!--                                    <button th:if="${disabled != 'disabled'}"-->
+								<!--                                            th:disabled="${disabled != 'disabled'}" disabled th:formaction="@{/admin/reset}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn">Tạo mới-->
+								<!--                                    </button>-->
+
+								<!--                                    <button th:unless="${disabled != 'disabled'}" th:formaction="@{/admin/reset}" formmethod="post" type="submit"-->
+								<!--                                            class="form__btn">Tạo mới-->
+								<!--                                    </button>-->
+
+								<!--                                </div>-->
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<!-- end form -->
+			<!-- Table to display movie information -->
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-striped main__table d-lg-table">
+						<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Tên phim</th>
+							<th scope="col">Đạo diễn</th>
+							<th scope="col">Diễn viên</th>
+							<th scope="col">Ngày ra mắt</th>
+							<th scope="col">Thời lượng</th>
+							<th scope="col">Thể loại</th>
+							<th scope="col">Quốc gia</th>
+						</tr>
+						</thead>
+						<tbody>
+						<!-- Loop through each movie object in phimDTO -->
+						<tr th:each="phim : ${phimDTOList}">
+							<td class="main__table-text--green">
+								<a class="main__table-text--green" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.maPhim}"></a>
+							</td>
+							<td class="main__table-text--grey">
+								<a class="main__table-text--grey" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.tenPhim}"></a>
+
+							</td>
+							<td class="main__table-text--grey">
+								<a class="main__table-text--grey" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.daoDien}"></a>
+
+							</td>
+							<td class="main__table-text--grey">
+								<a class="main__table-text--grey" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.dienVien}"></a>
+
+							</td>
+							<td class="main__table-text--grey">
+								<a class="main__table-text--grey" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.ngayRaMat}"></a>
+
+							</td>
+							<td class="main__table-text--grey">
+								<a class="main__table-text--grey" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.thoiLuong}"></a>
+
+							</td>
+							<td class="main__table-text--grey">
+								<a class="main__table-text--grey" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.getTheLoai()}"></a>
+
+							</td>
+							<td class="main__table-text--grey">
+								<a class="main__table-text--grey" th:href="@{/admin/show-info/{id}(id=${phim.maPhim})}"
+								   th:text="${phim.quocGia}"></a>
+
+							</td>
+						</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<!-- end main content -->
+
+<!-- JS -->
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script src="js/jquery.mCustomScrollbar.min.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/admin.js"></script>
+<script>
+	// Bắt sự kiện click trên hình ảnh và chuyển hướng đến trường input ẩn
+	document.getElementById("form__img").addEventListener("click", function () {
+		document.getElementById("form__img-upload").click();
+	});
+
+	// Bắt sự kiện khi người dùng chọn hình ảnh mới
+	document.getElementById("form__img-upload").addEventListener("change", function (event) {
+		// Lấy đường dẫn của hình ảnh mới
+		var newImage = URL.createObjectURL(event.target.files[0]);
+		// Cập nhật nguồn hình ảnh hiển thị
+		document.getElementById("form__img").src = newImage;
+	});
+
+</script>
+</body>
+
+</html>

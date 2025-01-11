@@ -1,0 +1,158 @@
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="header__content">
+                    <!-- header logo -->
+                    <a href="/home/index" class="header__logo">
+                        <img src="/img/logo.svg" alt="">
+                    </a>
+                    <!-- end header logo -->
+
+                    <!-- header nav -->
+                    <ul class="header__nav">
+                        <!-- dropdown -->
+                        <li class="header__nav-item">
+                            <a class=" header__nav-link" href="/home/index" role="button" >Trang chủ </a>
+
+                            <!--								<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">-->
+                            <!--									<li><a href="index.html">Home style 1</a></li>-->
+                            <!--									<li><a href="index2.html">Home style 2</a></li>-->
+                            <!--									<li><a href="index3.html">Home style 3</a></li>-->
+                            <!--								</ul>-->
+                        </li>
+                        <!-- end dropdown -->
+
+                        <!-- dropdown -->
+                        <li class="header__nav-item">
+                            <a class=" header__nav-link" href="/home/phim" role="button">Phim </a>
+
+                            <!--								<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">-->
+                            <!--									<li><a href="catalog.html">Catalog style 1</a></li>-->
+                            <!--									<li><a href="catalog2.html">Catalog style 2</a></li>-->
+                            <!--									<li><a href="details.html">Details style 1</a></li>-->
+                            <!--									<li><a href="details2.html">Details style 2</a></li>-->
+                            <!--								</ul>-->
+                        </li>
+                        <!-- end dropdown -->
+
+                        <li class="header__nav-item" th:if="${nguoidung.nhanVien}">
+                            <a  href="/admin/index" class="header__nav-link">Nhân viên</a>
+                        </li>
+
+
+                        <!-- dropdown -->
+                        <li class="dropdown header__nav-item">
+                            <a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
+
+                            <ul class="dropdown-menu header__dropdown-menu scrollbar-dropdown" aria-labelledby="dropdownMenuMore">
+                                <li><a href="about.html">About</a></li>
+                                <li><a th:href="@{/nguoidung/hoso(id = ${nguoidung.maNguoiDung})}" >Profile</a></li>
+                                <li><a href="contacts.html">Contacts</a></li>
+                                <li><a href="faq.html">Help center</a></li>
+                                <li><a href="/home/privacy">Privacy policy</a></li>
+                                <li><a href="/admin/index" target="_blank">Admin pages</a></li>
+                                <li><a href="dangnhap.html">Sign in</a></li>
+                                <li><a href="dangky.html">Sign up</a></li>
+                                <li><a href="quenmatkhau.html">Forgot password</a></li>
+                                <li><a href="404.html">404 Page</a></li>
+                            </ul>
+                        </li>
+                        <!-- end dropdown -->
+                    </ul>
+                    <!-- end header nav -->
+
+                    <!-- header auth -->
+                    <div class="header__auth">
+                        <form action="#" class="header__search">
+                            <input oninput="search(this)" th:value="${param.keywords}" name="keywords" class="header__search-input" type="text" placeholder="Từ khóa...">
+<!--                            <ul class="dropdown-menu header__dropdown-menu scrollbar-dropdown" style="z-index: 2;opacity: 100%; pointer-events: auto;" >-->
+<!--                                <li><a href="about.html">About</a></li>-->
+
+
+<!--                            </ul>-->
+                            <div id="productContainer" style="position: absolute; top: 75px">
+
+                            </div>
+                            <button class="header__search-button" type="button">
+                                <i class="icon ion-ios-search"></i>
+                            </button>
+                            <button class="header__search-close" type="button">
+                                <i class="icon ion-md-close"></i>
+                            </button>
+                        </form>
+
+                        <button class="header__search-btn" type="button">
+                            <i class="icon ion-ios-search"></i>
+                        </button>
+
+                        <!-- dropdown -->
+<!--                        <div class="dropdown header__lang">-->
+<!--                            <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">VI <i class="icon ion-ios-arrow-down"></i></a>-->
+
+<!--                            <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuLang">-->
+<!--                                <li><a href="#">English</a></li>-->
+<!--                                <li><a href="#">Spanish</a></li>-->
+<!--                                <li><a href="#">Russian</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+                        <!-- end dropdown -->
+
+                        <a th:if="${nguoidung.getTenKhachHang()}==null" href="/login/signin" class="header__sign-in">
+                            <i class="icon ion-ios-log-in"></i>
+                            <span>đăng nhập</span>
+                        </a>
+                        <a class="row"   th:href="@{/nguoidung/hoso(id = ${nguoidung.maNguoiDung})}" th:if="${nguoidung.getTenKhachHang()}!=null"  style="margin-right: 0px;align-items: center;position: absolute;right: 0px">
+                            <div class="profile__meta" style="margin-right: 5px">
+                                <h3 th:text="${nguoidung.getTenKhachHang()}">John Doe</h3>
+                            </div>
+                            <div th:if="${nguoidung.getHinhAnh()}!=null" class="profile__avatar">
+                                <img   th:src="@{'http://localhost:8080/getimage/'+${nguoidung.getHinhAnh()}}" alt="">
+                            </div>
+                            <div th:if="${nguoidung.getHinhAnh()}==null" class="profile__avatar">
+                                <img src="/img/user.svg" alt="">
+                            </div>
+                        </a>
+                    </div>
+                    <!-- end header auth -->
+
+                    <!-- header menu btn -->
+                    <button class="header__btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- end header menu btn -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    function search(key) {
+        var txtSearch = key.value;
+        $.ajax({
+            url: "http://localhost:8080/search",
+            type: "get",
+            data: {
+                txt: txtSearch
+            },
+            success: function (data) {
+                var phims = JSON.parse(data);
+                var productHtml = "<ul class='dropdown-menu header__dropdown-menu scrollbar-dropdown' style = 'z-index: 2;opacity: 100%; pointer-events: auto;' >";
+
+                if (data == "false") {
+                    productHtml ="";
+                    $("#productContainer").html(productHtml);
+                }else {
+                    phims.forEach(function (phim) {
+                        productHtml +=
+                            "<li><a "+"href="+"/home/chitietphim?idPhim="+phim.maPhim+">"+phim.tenPhim+"</a></li>"
+                        " </ul>";
+                    });
+                    $("#productContainer").html(productHtml);
+                }
+            }
+        });
+    }
+</script>
